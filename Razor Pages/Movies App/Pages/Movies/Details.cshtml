@@ -1,0 +1,44 @@
+﻿@page
+@model MoviesApp.Pages.Movies.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <h1>Details</h1>
+    </div>
+</div>
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.ReleaseDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.ReleaseDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Genre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Genre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Movie.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Movie.Price)
+        </dd>
+        <div class="col-sm-3" style="padding-top:10px;">
+            <a asp-page="./Edit" asp-route-id="@Model.Movie.ID" class="btn btn-success">Edit</a>
+            <a asp-page="./Index" class="btn btn-secondary" style="float:right">Back to List</a>
+        </div>
+    </dl>
+</div>

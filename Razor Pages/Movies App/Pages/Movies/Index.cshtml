@@ -1,0 +1,83 @@
+﻿@page
+@model MoviesApp.Pages.Movies.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<form style="padding:10px;">
+    <div class="row">
+        <div class="form-group col-md-3">
+            <div class="input-group input-group-alt">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">Genre:</label>
+                </div>
+                <select asp-for="MovieGenre" asp-items="Model.Genres" onchange="this.form.submit()" class="form-control">
+                    <option value="">All</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+            <div class="input-group input-group-alt">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">Title:</label>
+                </div>
+                <input type="text" class="form-control" asp-for="SearchString" />
+                <input type="submit" class="btn btn-secondary" placeholder="..." value="Search" />
+            </div>
+        </div>
+    </div>
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie[0].Rating)
+            </th>
+            <th>
+                <a asp-page="Create" class="btn btn-primary" style="float: right;">Add</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Movie)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    <div style="float: right;">
+                        <a asp-page="./Edit" asp-route-id="@item.ID" class="btn btn-success">Edit</a>
+                        <a asp-page="./Details" asp-route-id="@item.ID" class="btn btn-info">Details</a>
+                        <a asp-page="./Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
